@@ -1,0 +1,88 @@
+<!DOCTYPE html>    
+<html lang="en">    
+<head>    
+  <meta charset="UTF-8">    
+  <title>PORT SMS Sender</title>    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <style>    
+    * { box-sizing: border-box; }
+    body {    
+      font-family: "Segoe UI", sans-serif;    
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);    
+      display: flex;    
+      justify-content: center;    
+      align-items: center;    
+      height: 100vh;    
+      margin: 0;    
+      padding: 10px;    
+    }    
+    .card {    
+      background: #ffffff;    
+      padding: 28px 22px;    
+      border-radius: 18px;    
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);    
+      width: 100%;    
+      max-width: 360px;    
+      text-align: center;    
+    }    
+    input {    
+      width: 100%;    
+      padding: 14px;    
+      font-size: 16px;    
+      margin-top: 12px;    
+      border: 1.5px solid #cbd5e1;    
+      border-radius: 10px;    
+    }    
+    .btn {    
+      margin-top: 14px;    
+      width: 100%;    
+      padding: 14px;    
+      font-size: 16px;    
+      border: none;    
+      border-radius: 10px;    
+      cursor: pointer;    
+    }    
+    .send { background: #4f46e5; color: white; }    
+    .cancel { background: #e5e7eb; color: #374151; }    
+    .note { font-size: 12px; color: #475569; margin-top: 10px; }    
+  </style>    
+</head>    
+<body>    
+    
+<div class="card">    
+  <h2>📩 Send PORT SMS</h2>    
+  <input type="tel" id="mobile" placeholder="Enter 10 digit mobile number" maxlength="10">    
+    
+  <button class="btn send" onclick="sendPort()">1️⃣ Send PORT SMS</button>    
+  <button class="btn cancel" onclick="clearInput()">2️⃣ Send CANCEL SMS</button>    
+  <button class="btn cancel" onclick="clearOnly()">3️⃣ Clear Number</button>    
+    
+  <div class="note">SMS will be sent to <b>1900</b> as: <br>PORT / CANCEL &lt;your number&gt;</div>    
+</div>    
+    
+<script>    
+function sendPort() {    
+  const mobile = document.getElementById("mobile").value.trim();    
+  if (!/^[0-9]{10}$/.test(mobile)) {    
+    alert("❗ Please enter a valid 10 digit mobile number");    
+    return;    
+  }    
+  window.location.href = "sms:1900?body=PORT%20" + mobile;    
+}    
+    
+function clearInput() {    
+  const mobile = document.getElementById("mobile").value.trim();    
+  if (!/^[0-9]{10}$/.test(mobile)) {    
+    alert("❗ Please enter a valid 10 digit mobile number to cancel");    
+    return;    
+  }    
+  window.location.href = "sms:1900?body=CANCEL%20" + mobile;    
+}    
+
+function clearOnly() {
+  document.getElementById("mobile").value = "";
+}
+</script>    
+    
+</body>    
+</html>
